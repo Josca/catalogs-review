@@ -12,13 +12,13 @@ html:
 	$(PYTHON) generate.py
 
 pdf: html
-	pandoc $(OUTPUT)/report.html -o $(OUTPUT)/report.pdf --pdf-engine=wkhtmltopdf
+	pandoc $(OUTPUT)/index.html -o $(OUTPUT)/report.pdf --pdf-engine=wkhtmltopdf
 
 odt: html
-	pandoc $(OUTPUT)/report.html -o $(OUTPUT)/report.odt
+	pandoc $(OUTPUT)/index.html -o $(OUTPUT)/report.odt
 
 docx: html
-	pandoc $(OUTPUT)/report.html -o $(OUTPUT)/report.docx
+	pandoc $(OUTPUT)/index.html -o $(OUTPUT)/report.docx
 
 clean:
 	rm -rf $(OUTPUT)

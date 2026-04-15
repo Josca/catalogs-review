@@ -90,7 +90,7 @@ def main():
     )
 
     OUTPUT_DIR.mkdir(exist_ok=True)
-    output_file = OUTPUT_DIR / "report.html"
+    output_file = OUTPUT_DIR / "index.html"
     output_file.write_text(html)
     print(f"Report generated: {output_file}")
 
