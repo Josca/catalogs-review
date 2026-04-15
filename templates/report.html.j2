@@ -326,9 +326,6 @@
                 <th>#</th>
                 <th>Chart Name</th>
                 <th>Category</th>
-                <th>App Version</th>
-                <th>Chart Version</th>
-                <th>Last Updated</th>
             </tr>
         </thead>
         <tbody>
@@ -337,9 +334,6 @@
                 <td>{{ loop.index }}</td>
                 <td><strong>{% if chart.url %}<a href="{{ chart.url }}">{{ chart.name }}</a>{% else %}{{ chart.name }}{% endif %}</strong></td>
                 <td><span class="category-badge">{{ chart.category }}</span></td>
-                <td>{{ chart.app_version | default("—", true) }}</td>
-                <td>{{ chart.chart_version | default("—", true) }}</td>
-                <td>{{ chart.last_updated | default("—", true) }}</td>
             </tr>
             {% endfor %}
         </tbody>
