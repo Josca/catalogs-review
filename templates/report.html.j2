@@ -294,14 +294,14 @@
 <table class="overlap-matrix sortable" id="overlap-table">
     <thead>
         <tr>
-            <th data-sort="string">Application</th>
-            <th data-sort="string">Upstream Repo</th>
-            <th data-sort="number">Stars</th>
-            <th data-sort="string">Category</th>
+            <th data-sort="string" data-col="app">Application</th>
+            <th data-sort="string" data-col="repo">Upstream Repo</th>
+            <th data-sort="number" data-col="stars">Stars</th>
+            <th data-sort="string" data-col="category">Category</th>
             {% for p in providers %}
-            <th data-sort="number">{{ p.provider.short_name | upper }}</th>
+            <th data-sort="number" data-col="{{ p.provider.short_name }}">{{ p.provider.short_name | upper }}</th>
             {% endfor %}
-            <th data-sort="number">Providers</th>
+            <th data-sort="number" data-col="providers">Providers</th>
         </tr>
     </thead>
     <tbody>
@@ -400,8 +400,15 @@
     var thead = table.querySelector('thead');
     var tbody = table.querySelector('tbody');
     var headers = thead.querySelectorAll('th[data-sort]');
-    // sortKeys: array of {col, dir, type} in priority order
     var sortKeys = [];
+
+    // Build col name <-> index maps
+    var colByName = {}, nameByCol = {};
+    headers.forEach(function(th, i) {
+        var name = th.getAttribute('data-col');
+        colByName[name] = i;
+        nameByCol[i] = name;
+    });
 
     function getValue(row, col, type) {
         var td = row.children[col];
@@ -450,6 +457,52 @@
         });
     }
 
+    // Encode sort state to URL: ?sort=stars:desc,providers:desc,app:asc
+    function pushSortToURL() {
+        var parts = sortKeys.map(function(key) {
+            return nameByCol[key.col] + ':' + (key.dir === 1 ? 'asc' : 'desc');
+        });
+        var params = new URLSearchParams(window.location.search);
+        if (parts.length > 0) {
+            params.set('sort', parts.join(','));
+        } else {
+            params.delete('sort');
+        }
+        var qs = params.toString();
+        var url = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+        history.replaceState(null, '', url);
+    }
+
+    // Read sort state from URL on load
+    function loadSortFromURL() {
+        var params = new URLSearchParams(window.location.search);
+        var sort = params.get('sort');
+        if (!sort) return false;
+
+        var keys = [];
+        sort.split(',').forEach(function(part) {
+            var pieces = part.split(':');
+            var name = pieces[0];
+            var dir = pieces[1] === 'asc' ? 1 : -1;
+            if (name in colByName) {
+                var col = colByName[name];
+                var type = headers[col].getAttribute('data-sort');
+                keys.push({col: col, dir: dir, type: type});
+            }
+        });
+        if (keys.length > 0) {
+            sortKeys = keys;
+            return true;
+        }
+        return false;
+    }
+
+    function applySortAndUpdate() {
+        updateIndicators();
+        sortTable();
+        pushSortToURL();
+    }
+
     headers.forEach(function(th, colIndex) {
         th.addEventListener('click', function(e) {
             var type = th.getAttribute('data-sort');
@@ -459,14 +512,12 @@
             }
 
             if (e.shiftKey) {
-                // Shift+click: add/toggle secondary sort
                 if (existing >= 0) {
                     sortKeys[existing].dir *= -1;
                 } else {
                     sortKeys.push({col: colIndex, dir: type === 'number' ? -1 : 1, type: type});
                 }
             } else {
-                // Regular click: set as primary sort
                 if (existing === 0) {
                     sortKeys[0].dir *= -1;
                 } else {
@@ -474,10 +525,15 @@
                 }
             }
 
-            updateIndicators();
-            sortTable();
+            applySortAndUpdate();
         });
     });
+
+    // Apply sort from URL on page load
+    if (loadSortFromURL()) {
+        updateIndicators();
+        sortTable();
+    }
 })();
 </script>
 </body>
