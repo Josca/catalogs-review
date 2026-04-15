@@ -409,11 +409,11 @@
             {% for chart in p.charts | sort(attribute='name') %}
             <tr>
                 <td>{{ loop.index }}</td>
-                <td><strong>{{ chart.name }}</strong></td>
+                <td><strong>{% if chart.url %}<a href="{{ chart.url }}">{{ chart.name }}</a>{% else %}{{ chart.name }}{% endif %}</strong></td>
                 <td><span class="category-badge">{{ chart.category }}</span></td>
-                <td>{{ chart.app_version }}</td>
-                <td>{{ chart.chart_version }}</td>
-                <td>{{ chart.last_updated }}</td>
+                <td>{{ chart.app_version | default("—", true) }}</td>
+                <td>{{ chart.chart_version | default("—", true) }}</td>
+                <td>{{ chart.last_updated | default("—", true) }}</td>
             </tr>
             {% endfor %}
         </tbody>

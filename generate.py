@@ -21,8 +21,21 @@ def load_providers():
     for yaml_file in sorted(DATA_DIR.glob("*.yaml")):
         with open(yaml_file) as f:
             data = yaml.safe_load(f)
+        resolve_chart_urls(data)
         providers.append(data)
     return providers
+
+
+def resolve_chart_urls(data):
+    """Set chart URLs from per-chart url field or provider chart_url_template."""
+    template = data["provider"].get("chart_url_template")
+    for chart in data.get("charts", []):
+        if chart.get("url"):
+            continue
+        if template:
+            chart["url"] = template.format(name=chart["name"])
+        else:
+            chart["url"] = ""
 
 
 def compute_overlap(providers):
