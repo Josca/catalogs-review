@@ -120,6 +120,17 @@
             color: var(--color-success);
         }
 
+        .overlap-matrix td.available .provider-link {
+            color: var(--color-accent);
+            text-decoration: none;
+            font-size: 0.75em;
+            opacity: 0.5;
+        }
+
+        .overlap-matrix td.available .provider-link:hover {
+            opacity: 1;
+        }
+
         .overlap-matrix td.unavailable {
             background: #fff5f5;
             text-align: center;
@@ -313,7 +324,11 @@
             <td data-value="{{ info.category }}"><span class="category-badge">{{ info.category }}</span></td>
             {% for p in providers %}
             {% if p.provider.short_name in info.providers %}
+            {% if info.provider_urls.get(p.provider.short_name) %}
+            <td class="available" data-value="1">&#10003; <a href="{{ info.provider_urls[p.provider.short_name] }}" title="{{ p.provider.name }}" class="provider-link">&#x2197;</a></td>
+            {% else %}
             <td class="available" data-value="1">&#10003;</td>
+            {% endif %}
             {% else %}
             <td class="unavailable" data-value="0">&#10007;</td>
             {% endif %}

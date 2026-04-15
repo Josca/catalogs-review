@@ -66,11 +66,14 @@ def compute_overlap(providers, repos=None):
                 overlap[app] = {
                     "category": chart["category"],
                     "providers": [],
+                    "provider_urls": {},
                     "repo": repo_info.get("repo", ""),
                     "stars": repo_info.get("stars", 0),
                 }
             if short not in overlap[app]["providers"]:
                 overlap[app]["providers"].append(short)
+            if chart.get("url"):
+                overlap[app]["provider_urls"][short] = chart["url"]
     return overlap
 
 
