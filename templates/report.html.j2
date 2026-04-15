@@ -258,6 +258,62 @@
             margin-bottom: 0.5rem;
         }
 
+        .category-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+            align-items: center;
+        }
+
+        .category-filters .filter-label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--color-secondary);
+            margin-right: 0.3rem;
+        }
+
+        .category-filters label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            padding: 0.2rem 0.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: var(--color-bg-alt);
+            transition: background 0.15s;
+        }
+
+        .category-filters label:hover {
+            background: #ebf4ff;
+        }
+
+        .category-filters label.unchecked {
+            opacity: 0.45;
+            text-decoration: line-through;
+        }
+
+        .category-filters .filter-actions {
+            margin-left: 0.5rem;
+        }
+
+        .category-filters .filter-actions button {
+            background: none;
+            border: 1px solid var(--color-border);
+            border-radius: 4px;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.75rem;
+            cursor: pointer;
+            color: var(--color-text-light);
+        }
+
+        .category-filters .filter-actions button:hover {
+            background: var(--color-bg-alt);
+            color: var(--color-text);
+        }
+
         @media print {
             body { padding: 1rem; max-width: 100%; }
             .provider-section { break-inside: avoid; }
@@ -315,6 +371,16 @@
 <!-- Chart Overlap Matrix -->
 <h2 id="overlap">Chart Overlap Matrix</h2>
 <p>Shows which applications are available from each provider. Charts available from multiple providers enable multi-vendor strategies.</p>
+<div class="category-filters no-print" id="category-filters">
+    <span class="filter-label">Categories:</span>
+    {% for cat in categories %}
+    <label><input type="checkbox" value="{{ cat }}" checked> {{ cat }}</label>
+    {% endfor %}
+    <span class="filter-actions">
+        <button id="filter-all">All</button>
+        <button id="filter-none">None</button>
+    </span>
+</div>
 <p class="sort-hint">Click column headers to sort. Shift+click to add secondary sort. Click again to reverse.</p>
 <table class="overlap-matrix sortable" id="overlap-table">
     <thead>
@@ -570,6 +636,69 @@
     if (loadSortFromURL()) {
         updateIndicators();
         sortTable();
+    }
+
+    // --- Category filters ---
+    var filtersEl = document.getElementById('category-filters');
+    if (filtersEl) {
+        var checkboxes = filtersEl.querySelectorAll('input[type="checkbox"]');
+        var catColIdx = domColIndex[colByName['category']];
+
+        function applyFilters() {
+            var active = {};
+            checkboxes.forEach(function(cb) {
+                if (cb.checked) active[cb.value] = true;
+                cb.parentElement.classList.toggle('unchecked', !cb.checked);
+            });
+            var rows = tbody.querySelectorAll('tr');
+            rows.forEach(function(row) {
+                var cat = row.children[catColIdx].getAttribute('data-value');
+                row.style.display = (cat in active) ? '' : 'none';
+            });
+            // Sync to URL
+            var params = new URLSearchParams(window.location.search);
+            var allChecked = true, noneChecked = true;
+            checkboxes.forEach(function(cb) {
+                if (!cb.checked) allChecked = false;
+                if (cb.checked) noneChecked = false;
+            });
+            if (allChecked || noneChecked) {
+                params.delete('categories');
+            } else {
+                var cats = [];
+                checkboxes.forEach(function(cb) { if (cb.checked) cats.push(cb.value); });
+                params.set('categories', cats.join(','));
+            }
+            var qs = params.toString();
+            var url = window.location.pathname + (qs ? '?' + qs : '') + window.location.hash;
+            history.replaceState(null, '', url);
+        }
+
+        checkboxes.forEach(function(cb) {
+            cb.addEventListener('change', applyFilters);
+        });
+
+        document.getElementById('filter-all').addEventListener('click', function() {
+            checkboxes.forEach(function(cb) { cb.checked = true; });
+            applyFilters();
+        });
+
+        document.getElementById('filter-none').addEventListener('click', function() {
+            checkboxes.forEach(function(cb) { cb.checked = false; });
+            applyFilters();
+        });
+
+        // Load filter state from URL
+        var params = new URLSearchParams(window.location.search);
+        var catParam = params.get('categories');
+        if (catParam) {
+            var active = {};
+            catParam.split(',').forEach(function(c) { active[c] = true; });
+            checkboxes.forEach(function(cb) {
+                cb.checked = cb.value in active;
+            });
+            applyFilters();
+        }
     }
 })();
 </script>
