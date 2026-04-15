@@ -113,6 +113,17 @@
         tr:nth-child(even) { background: var(--color-bg-alt); }
         tr:hover { background: #edf2f7; }
 
+        .overlap-matrix { counter-reset: rownum; }
+        .overlap-matrix tbody tr { counter-increment: rownum; }
+        .overlap-matrix td.row-num::before { content: counter(rownum); }
+        .overlap-matrix td.row-num, .overlap-matrix th.row-num {
+            text-align: center;
+            color: var(--color-text-light);
+            font-size: 0.8em;
+            width: 2em;
+            padding: 0.4rem;
+        }
+
         .overlap-matrix td.available {
             background: #c6f6d5;
             text-align: center;
@@ -305,6 +316,7 @@
 <table class="overlap-matrix sortable" id="overlap-table">
     <thead>
         <tr>
+            <th class="row-num">#</th>
             <th data-sort="string" data-col="app">Application</th>
             <th data-sort="string" data-col="repo">Upstream Repo</th>
             <th data-sort="number" data-col="stars">Stars</th>
@@ -318,6 +330,7 @@
     <tbody>
         {% for chart_name, info in overlap | dictsort %}
         <tr>
+            <td class="row-num"></td>
             <td class="chart-name" data-value="{{ chart_name }}">{{ chart_name }}</td>
             <td data-value="{{ info.repo }}">{% if info.repo %}<a href="https://github.com/{{ info.repo }}">{{ info.repo }}</a>{% else %}—{% endif %}</td>
             <td data-value="{{ info.stars }}">{{ info.stars if info.stars else "—" }}</td>
@@ -418,15 +431,21 @@
     var sortKeys = [];
 
     // Build col name <-> index maps
-    var colByName = {}, nameByCol = {};
+    // Map sortable header index to actual DOM column index
+    var allTh = thead.querySelectorAll('th');
+    var colByName = {}, nameByCol = {}, domColIndex = {};
     headers.forEach(function(th, i) {
         var name = th.getAttribute('data-col');
         colByName[name] = i;
         nameByCol[i] = name;
+        // Find the actual position of this th among all th elements
+        for (var j = 0; j < allTh.length; j++) {
+            if (allTh[j] === th) { domColIndex[i] = j; break; }
+        }
     });
 
     function getValue(row, col, type) {
-        var td = row.children[col];
+        var td = row.children[domColIndex[col]];
         var v = td.getAttribute('data-value');
         if (type === 'number') {
             var n = parseFloat(v);
