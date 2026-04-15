@@ -60,10 +60,14 @@ def compute_overlap(providers, repos=None):
         for chart in p.get("charts", []):
             app = chart.get("app", chart["name"])
             if app not in overlap:
+                repo_info = repos.get(app, {})
+                if isinstance(repo_info, str):
+                    repo_info = {"repo": repo_info, "stars": 0}
                 overlap[app] = {
                     "category": chart["category"],
                     "providers": [],
-                    "repo": repos.get(app, ""),
+                    "repo": repo_info.get("repo", ""),
+                    "stars": repo_info.get("stars", 0),
                 }
             if short not in overlap[app]["providers"]:
                 overlap[app]["providers"].append(short)

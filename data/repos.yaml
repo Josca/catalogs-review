@@ -1,167 +1,495 @@
 # Canonical upstream GitHub repositories for applications.
-# Key: app name (as used in overlap matrix), Value: GitHub owner/repo
+# Key: app name, Value: {repo: owner/repo, stars: N}
 
-alertmanager: prometheus/alertmanager
-alloy: grafana/alloy
-amd-gpu: ROCm/gpu-operator
-apache: apache/httpd
-apache-airflow: apache/airflow
-apache-pulsar: apache/pulsar
-apisix: apache/apisix
-appsmith: appsmithorg/appsmith
-arangodb: arangodb/arangodb
-argo-cd: argoproj/argo-cd
-argo-rollouts: argoproj/argo-rollouts
-argo-workflows: argoproj/argo-workflows
-aspnet-core: dotnet/aspnetcore
-cadvisor: google/cadvisor
-cassandra: apache/cassandra
-cert-manager: cert-manager/cert-manager
-cilium: cilium/cilium
-clearml: allegroai/clearml
-clickhouse: ClickHouse/ClickHouse
-cloudnativepg: cloudnative-pg/cloudnative-pg
-cluster-autoscaler: kubernetes/autoscaler
-concourse: concourse/concourse
-consul: hashicorp/consul
-contour: projectcontour/contour
-coredns: coredns/coredns
-dapr: dapr/dapr
-deepspeed: microsoft/DeepSpeed
-dex: dexidp/dex
-discourse: discourse/discourse
-dremio: dremio/dremio-oss
-drupal: drupal/drupal
-ejbca: Keyfactor/ejbca-ce
-elasticsearch: elastic/elasticsearch
-envoy-gateway: envoyproxy/gateway
-etcd: etcd-io/etcd
-external-dns: kubernetes-sigs/external-dns
-external-secrets: external-secrets/external-secrets
-falco: falcosecurity/falco
-flink: apache/flink
-fluent-bit: fluent/fluent-bit
-fluentd: fluent/fluentd
-flux: fluxcd/flux2
-flux-operator: controlplaneio-fluxcd/flux-operator
-gatekeeper: open-policy-agent/gatekeeper
-ghost: TryGhost/Ghost
-gitea: go-gitea/gitea
-gitlab: gitlabhq/gitlabhq
-gitlab-runner: gitlabhq/gitlab-runner
-grafana: grafana/grafana
-grafana-k6-operator: grafana/k6-operator
-grafana-mimir: grafana/mimir
-grafana-operator: grafana/grafana-operator
-haproxy: haproxytech/kubernetes-ingress
-harbor: goharbor/harbor
-headlamp: headlamp-k8s/headlamp
-influxdb: influxdata/influxdb
-ingress-nginx: kubernetes/ingress-nginx
-istio: istio/istio
-jaeger: jaegertracing/jaeger
-janusgraph: JanusGraph/janusgraph
-jenkins: jenkinsci/jenkins
-jupyterhub: jupyterhub/jupyterhub
-kafka: apache/kafka
-kagent: kagent-dev/kagent
-keda: kedacore/keda
-keycloak: keycloak/keycloak
-keydb: Snapchat/KeyDB
-kgateway: kgateway-dev/kgateway
-kiali: kiali/kiali
-kibana: elastic/kibana
-knative: knative/serving
-kong: Kong/kong
-kserve: kserve/kserve
-kube-prometheus-stack: prometheus-operator/kube-prometheus
-kube-state-metrics: kubernetes/kube-state-metrics
-kubecost: kubecost/cost-analyzer-helm-chart
-kubeflow-spark-operator: kubeflow/spark-operator
-kuberay: ray-project/kuberay
-kubernetes-csi-driver-nfs: kubernetes-csi/csi-driver-nfs
-kubernetes-event-exporter: resmoio/kubernetes-event-exporter
-kured: kubereboot/kured
-kyverno: kyverno/kyverno
-local-ai: mudler/LocalAI
-local-path-provisioner: rancher/local-path-provisioner
-logstash: elastic/logstash
-loki: grafana/loki
-lws: kubernetes-sigs/lws
-mariadb: MariaDB/server
-mastodon: mastodon/mastodon
-matomo: matomo-org/matomo
-memcached: memcached/memcached
-metacontroller: metacontroller/metacontroller
-metallb: metallb/metallb
-metrics-server: kubernetes-sigs/metrics-server
-milvus: milvus-io/milvus
-minio: minio/minio
-mlflow: mlflow/mlflow
-mongodb: mongodb/mongo
-moodle: moodle/moodle
-mysql: mysql/mysql-server
-n8n: n8n-io/n8n
-nats: nats-io/nats-server
-neo4j: neo4j/neo4j
-nessie: projectnessie/nessie
-nginx: nginx/nginx
-nginx-ingress-controller: kubernetes/ingress-nginx
-nginx-ingress-f5: nginx/kubernetes-ingress
-node-exporter: prometheus/node_exporter
-node-feature-discovery: kubernetes-sigs/node-feature-discovery
-nvidia: NVIDIA/gpu-operator
-nvidia-network-operator: Mellanox/network-operator
-oauth2-proxy: oauth2-proxy/oauth2-proxy
-odoo: odoo/odoo
-ollama: ollama/ollama
-open-webui: open-webui/open-webui
-opencost: opencost/opencost
-openfeature: open-feature/open-feature-operator
-opensearch: opensearch-project/OpenSearch
-opentelemetry: open-telemetry/opentelemetry-collector
-parse: parse-community/parse-server
-penpot: penpot/penpot
-phpmyadmin: phpmyadmin/phpmyadmin
-pinniped: vmware-tanzu/pinniped
-policy-reporter: kyverno/policy-reporter
-postgresql: postgres/postgres
-postgresql-ha: postgres/postgres
-postgresql-operator: CrunchyData/postgres-operator
-prometheus: prometheus/prometheus
-prometheus-blackbox-exporter: prometheus/blackbox_exporter
-prometheus-operator: prometheus-operator/prometheus-operator
-prometheus-pushgateway: prometheus/pushgateway
-prometheus-statsd-exporter: prometheus/statsd_exporter
-pypiserver: pypiserver/pypiserver
-pytorch: pytorch/pytorch
-qdrant: qdrant/qdrant
-rabbitmq: rabbitmq/rabbitmq-server
-raw: helm-x/raw
-redis: redis/redis
-redmine: redmine/redmine
-schema-registry: confluentinc/schema-registry
-scylladb: scylladb/scylladb
-sealed-secrets: bitnami-labs/sealed-secrets
-seaweedfs: seaweedfs/seaweedfs
-solr: apache/solr
-sonarqube: SonarSource/sonarqube
-spark: apache/spark
-superset: apache/superset
-teleport: gravitational/teleport
-tempo: grafana/tempo
-tensorflow-resnet: tensorflow/tensorflow
-thanos: thanos-io/thanos
-tika: apache/tika
-tomcat: apache/tomcat
-traefik: traefik/traefik
-valkey: valkey-io/valkey
-vault: hashicorp/vault
-velero: vmware-tanzu/velero
-victoriametrics: VictoriaMetrics/VictoriaMetrics
-vllm: vllm-project/vllm
-whereabouts: k8snetworkplumbingwg/whereabouts
-wildfly: wildfly/wildfly
-wordpress: WordPress/WordPress
-zipkin: openzipkin/zipkin
-zookeeper: apache/zookeeper
+alertmanager:
+  repo: "prometheus/alertmanager"
+  stars: 8418
+alloy:
+  repo: "grafana/alloy"
+  stars: 3080
+amd-gpu:
+  repo: "ROCm/gpu-operator"
+  stars: 99
+apache:
+  repo: "apache/httpd"
+  stars: 3939
+apache-airflow:
+  repo: "apache/airflow"
+  stars: 45049
+apache-pulsar:
+  repo: "apache/pulsar"
+  stars: 15197
+apisix:
+  repo: "apache/apisix"
+  stars: 16444
+appsmith:
+  repo: "appsmithorg/appsmith"
+  stars: 39617
+arangodb:
+  repo: "arangodb/arangodb"
+  stars: 14144
+argo-cd:
+  repo: "argoproj/argo-cd"
+  stars: 22605
+argo-rollouts:
+  repo: "argoproj/argo-rollouts"
+  stars: 3441
+argo-workflows:
+  repo: "argoproj/argo-workflows"
+  stars: 16614
+aspnet-core:
+  repo: "dotnet/aspnetcore"
+  stars: 37839
+cadvisor:
+  repo: "google/cadvisor"
+  stars: 19062
+cassandra:
+  repo: "apache/cassandra"
+  stars: 9700
+cert-manager:
+  repo: "cert-manager/cert-manager"
+  stars: 13750
+cilium:
+  repo: "cilium/cilium"
+  stars: 24133
+clearml:
+  repo: "allegroai/clearml"
+  stars: 6628
+clickhouse:
+  repo: "ClickHouse/ClickHouse"
+  stars: 46888
+cloudnativepg:
+  repo: "cloudnative-pg/cloudnative-pg"
+  stars: 8427
+cluster-autoscaler:
+  repo: "kubernetes/autoscaler"
+  stars: 8819
+concourse:
+  repo: "concourse/concourse"
+  stars: 7812
+consul:
+  repo: "hashicorp/consul"
+  stars: 29845
+contour:
+  repo: "projectcontour/contour"
+  stars: 3926
+coredns:
+  repo: "coredns/coredns"
+  stars: 13988
+dapr:
+  repo: "dapr/dapr"
+  stars: 25688
+deepspeed:
+  repo: "microsoft/DeepSpeed"
+  stars: 42113
+dex:
+  repo: "dexidp/dex"
+  stars: 10735
+discourse:
+  repo: "discourse/discourse"
+  stars: 46784
+dremio:
+  repo: "dremio/dremio-oss"
+  stars: 1481
+drupal:
+  repo: "drupal/drupal"
+  stars: 4263
+ejbca:
+  repo: "Keyfactor/ejbca-ce"
+  stars: 901
+elasticsearch:
+  repo: "elastic/elasticsearch"
+  stars: 76525
+envoy-gateway:
+  repo: "envoyproxy/gateway"
+  stars: 2637
+etcd:
+  repo: "etcd-io/etcd"
+  stars: 51627
+external-dns:
+  repo: "kubernetes-sigs/external-dns"
+  stars: 8897
+external-secrets:
+  repo: "external-secrets/external-secrets"
+  stars: 6543
+falco:
+  repo: "falcosecurity/falco"
+  stars: 8861
+flink:
+  repo: "apache/flink"
+  stars: 25943
+fluent-bit:
+  repo: "fluent/fluent-bit"
+  stars: 7788
+fluentd:
+  repo: "fluent/fluentd"
+  stars: 13521
+flux:
+  repo: "fluxcd/flux2"
+  stars: 8045
+flux-operator:
+  repo: "controlplaneio-fluxcd/flux-operator"
+  stars: 605
+gatekeeper:
+  repo: "open-policy-agent/gatekeeper"
+  stars: 4190
+ghost:
+  repo: "TryGhost/Ghost"
+  stars: 52512
+gitea:
+  repo: "go-gitea/gitea"
+  stars: 54912
+gitlab:
+  repo: "gitlabhq/gitlabhq"
+  stars: 24298
+gitlab-runner:
+  repo: "gitlabhq/gitlab-runner"
+  stars: 242
+grafana:
+  repo: "grafana/grafana"
+  stars: 73210
+grafana-k6-operator:
+  repo: "grafana/k6-operator"
+  stars: 763
+grafana-mimir:
+  repo: "grafana/mimir"
+  stars: 5034
+grafana-operator:
+  repo: "grafana/grafana-operator"
+  stars: 1302
+haproxy:
+  repo: "haproxytech/kubernetes-ingress"
+  stars: 850
+harbor:
+  repo: "goharbor/harbor"
+  stars: 28266
+headlamp:
+  repo: "headlamp-k8s/headlamp"
+  stars: 6192
+influxdb:
+  repo: "influxdata/influxdb"
+  stars: 31433
+ingress-nginx:
+  repo: "kubernetes/ingress-nginx"
+  stars: 19498
+istio:
+  repo: "istio/istio"
+  stars: 38118
+jaeger:
+  repo: "jaegertracing/jaeger"
+  stars: 22681
+janusgraph:
+  repo: "JanusGraph/janusgraph"
+  stars: 5767
+jenkins:
+  repo: "jenkinsci/jenkins"
+  stars: 25190
+jupyterhub:
+  repo: "jupyterhub/jupyterhub"
+  stars: 8263
+kafka:
+  repo: "apache/kafka"
+  stars: 32379
+kagent:
+  repo: "kagent-dev/kagent"
+  stars: 2568
+keda:
+  repo: "kedacore/keda"
+  stars: 10094
+keycloak:
+  repo: "keycloak/keycloak"
+  stars: 33882
+keydb:
+  repo: "Snapchat/KeyDB"
+  stars: 12460
+kgateway:
+  repo: "kgateway-dev/kgateway"
+  stars: 5447
+kiali:
+  repo: "kiali/kiali"
+  stars: 3584
+kibana:
+  repo: "elastic/kibana"
+  stars: 21040
+knative:
+  repo: "knative/serving"
+  stars: 6029
+kong:
+  repo: "Kong/kong"
+  stars: 43198
+kserve:
+  repo: "kserve/kserve"
+  stars: 5335
+kube-prometheus-stack:
+  repo: "prometheus-operator/kube-prometheus"
+  stars: 7626
+kube-state-metrics:
+  repo: "kubernetes/kube-state-metrics"
+  stars: 6111
+kubecost:
+  repo: "kubecost/cost-analyzer-helm-chart"
+  stars: 627
+kubeflow-spark-operator:
+  repo: "kubeflow/spark-operator"
+  stars: 3116
+kuberay:
+  repo: "ray-project/kuberay"
+  stars: 2443
+kubernetes-csi-driver-nfs:
+  repo: "kubernetes-csi/csi-driver-nfs"
+  stars: 1251
+kubernetes-event-exporter:
+  repo: "resmoio/kubernetes-event-exporter"
+  stars: 1023
+kured:
+  repo: "kubereboot/kured"
+  stars: 2481
+kyverno:
+  repo: "kyverno/kyverno"
+  stars: 7625
+local-ai:
+  repo: "mudler/LocalAI"
+  stars: 45415
+local-path-provisioner:
+  repo: "rancher/local-path-provisioner"
+  stars: 2827
+logstash:
+  repo: "elastic/logstash"
+  stars: 14834
+loki:
+  repo: "grafana/loki"
+  stars: 27994
+lws:
+  repo: "kubernetes-sigs/lws"
+  stars: 695
+mariadb:
+  repo: "MariaDB/server"
+  stars: 7442
+mastodon:
+  repo: "mastodon/mastodon"
+  stars: 49840
+matomo:
+  repo: "matomo-org/matomo"
+  stars: 21428
+memcached:
+  repo: "memcached/memcached"
+  stars: 14154
+metacontroller:
+  repo: "metacontroller/metacontroller"
+  stars: 986
+metallb:
+  repo: "metallb/metallb"
+  stars: 8151
+metrics-server:
+  repo: "kubernetes-sigs/metrics-server"
+  stars: 6600
+milvus:
+  repo: "milvus-io/milvus"
+  stars: 43814
+minio:
+  repo: "minio/minio"
+  stars: 60706
+mlflow:
+  repo: "mlflow/mlflow"
+  stars: 25380
+mongodb:
+  repo: "mongodb/mongo"
+  stars: 28238
+moodle:
+  repo: "moodle/moodle"
+  stars: 6986
+mysql:
+  repo: "mysql/mysql-server"
+  stars: 12212
+n8n:
+  repo: "n8n-io/n8n"
+  stars: 184149
+nats:
+  repo: "nats-io/nats-server"
+  stars: 19594
+neo4j:
+  repo: "neo4j/neo4j"
+  stars: 16311
+nessie:
+  repo: "projectnessie/nessie"
+  stars: 1451
+nginx:
+  repo: "nginx/nginx"
+  stars: 29941
+nginx-ingress-controller:
+  repo: "kubernetes/ingress-nginx"
+  stars: 19498
+nginx-ingress-f5:
+  repo: "nginx/kubernetes-ingress"
+  stars: 5003
+node-exporter:
+  repo: "prometheus/node_exporter"
+  stars: 13319
+node-feature-discovery:
+  repo: "kubernetes-sigs/node-feature-discovery"
+  stars: 1018
+nvidia:
+  repo: "NVIDIA/gpu-operator"
+  stars: 2644
+nvidia-network-operator:
+  repo: "Mellanox/network-operator"
+  stars: 329
+oauth2-proxy:
+  repo: "oauth2-proxy/oauth2-proxy"
+  stars: 14194
+odoo:
+  repo: "odoo/odoo"
+  stars: 50106
+ollama:
+  repo: "ollama/ollama"
+  stars: 169069
+open-webui:
+  repo: "open-webui/open-webui"
+  stars: 131976
+opencost:
+  repo: "opencost/opencost"
+  stars: 6484
+openfeature:
+  repo: "open-feature/open-feature-operator"
+  stars: 289
+opensearch:
+  repo: "opensearch-project/OpenSearch"
+  stars: 12747
+opentelemetry:
+  repo: "open-telemetry/opentelemetry-collector"
+  stars: 6836
+parse:
+  repo: "parse-community/parse-server"
+  stars: 21380
+penpot:
+  repo: "penpot/penpot"
+  stars: 45375
+phpmyadmin:
+  repo: "phpmyadmin/phpmyadmin"
+  stars: 7853
+pinniped:
+  repo: "vmware-tanzu/pinniped"
+  stars: 707
+policy-reporter:
+  repo: "kyverno/policy-reporter"
+  stars: 365
+postgresql:
+  repo: "postgres/postgres"
+  stars: 20586
+postgresql-ha:
+  repo: "postgres/postgres"
+  stars: 20586
+postgresql-operator:
+  repo: "CrunchyData/postgres-operator"
+  stars: 4394
+prometheus:
+  repo: "prometheus/prometheus"
+  stars: 63592
+prometheus-blackbox-exporter:
+  repo: "prometheus/blackbox_exporter"
+  stars: 5642
+prometheus-operator:
+  repo: "prometheus-operator/prometheus-operator"
+  stars: 9895
+prometheus-pushgateway:
+  repo: "prometheus/pushgateway"
+  stars: 3318
+prometheus-statsd-exporter:
+  repo: "prometheus/statsd_exporter"
+  stars: 977
+pypiserver:
+  repo: "pypiserver/pypiserver"
+  stars: 2024
+pytorch:
+  repo: "pytorch/pytorch"
+  stars: 99144
+qdrant:
+  repo: "qdrant/qdrant"
+  stars: 30352
+rabbitmq:
+  repo: "rabbitmq/rabbitmq-server"
+  stars: 13592
+raw:
+  repo: "helm-x/raw"
+  stars: 0
+redis:
+  repo: "redis/redis"
+  stars: 73831
+redmine:
+  repo: "redmine/redmine"
+  stars: 5924
+schema-registry:
+  repo: "confluentinc/schema-registry"
+  stars: 2424
+scylladb:
+  repo: "scylladb/scylladb"
+  stars: 15476
+sealed-secrets:
+  repo: "bitnami-labs/sealed-secrets"
+  stars: 9038
+seaweedfs:
+  repo: "seaweedfs/seaweedfs"
+  stars: 31555
+solr:
+  repo: "apache/solr"
+  stars: 1601
+sonarqube:
+  repo: "SonarSource/sonarqube"
+  stars: 10439
+spark:
+  repo: "apache/spark"
+  stars: 43124
+superset:
+  repo: "apache/superset"
+  stars: 72418
+teleport:
+  repo: "gravitational/teleport"
+  stars: 20137
+tempo:
+  repo: "grafana/tempo"
+  stars: 5186
+tensorflow-resnet:
+  repo: "tensorflow/tensorflow"
+  stars: 194732
+thanos:
+  repo: "thanos-io/thanos"
+  stars: 14019
+tika:
+  repo: "apache/tika"
+  stars: 3696
+tomcat:
+  repo: "apache/tomcat"
+  stars: 8137
+traefik:
+  repo: "traefik/traefik"
+  stars: 62702
+valkey:
+  repo: "valkey-io/valkey"
+  stars: 25469
+vault:
+  repo: "hashicorp/vault"
+  stars: 35416
+velero:
+  repo: "vmware-tanzu/velero"
+  stars: 9962
+victoriametrics:
+  repo: "VictoriaMetrics/VictoriaMetrics"
+  stars: 16754
+vllm:
+  repo: "vllm-project/vllm"
+  stars: 76684
+whereabouts:
+  repo: "k8snetworkplumbingwg/whereabouts"
+  stars: 383
+wildfly:
+  repo: "wildfly/wildfly"
+  stars: 3161
+wordpress:
+  repo: "WordPress/WordPress"
+  stars: 21029
+zipkin:
+  repo: "openzipkin/zipkin"
+  stars: 17428
+zookeeper:
+  repo: "apache/zookeeper"
+  stars: 12749
