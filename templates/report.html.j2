@@ -212,7 +212,6 @@
     <h3>Contents</h3>
     <ul>
         <li><a href="#executive-summary">Executive Summary</a></li>
-        <li><a href="#comparison">Provider Comparison</a></li>
         <li><a href="#overlap">Chart Overlap Matrix</a></li>
         {% for p in providers %}
         <li><a href="#{{ p.provider.short_name }}">{{ p.provider.name }} — Chart Catalog</a></li>
@@ -243,81 +242,6 @@
 <!-- Executive Summary -->
 <h2 id="executive-summary">Executive Summary</h2>
 <p>This report compares {{ providers | length }} enterprise Helm chart providers, evaluating their certification processes, support models, security practices, and chart catalogs.</p>
-
-<!-- Provider Comparison Table -->
-<h2 id="comparison">Provider Comparison</h2>
-<table>
-    <thead>
-        <tr>
-            <th>Attribute</th>
-            {% for p in providers %}
-            <th>{{ p.provider.name }}</th>
-            {% endfor %}
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><strong>URL</strong></td>
-            {% for p in providers %}
-            <td><a href="{{ p.provider.url }}">{{ p.provider.url | truncate(40) }}</a></td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Total Charts</strong></td>
-            {% for p in providers %}
-            <td>{{ p.charts | length }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Certification</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.certification_process | truncate(150) }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Support Model</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.support_model | truncate(150) }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Vulnerability Scanning</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.security.scanning }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Chart Signing</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.security.signing }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>CVE Response</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.security.cve_response }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Update Cadence</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.update_cadence }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>OCI Support</strong></td>
-            {% for p in providers %}
-            <td>{{ "Yes" if p.provider.oci_support else "No" }}</td>
-            {% endfor %}
-        </tr>
-        <tr>
-            <td><strong>Licensing</strong></td>
-            {% for p in providers %}
-            <td>{{ p.provider.licensing }}</td>
-            {% endfor %}
-        </tr>
-    </tbody>
-</table>
 
 <!-- Chart Overlap Matrix -->
 <h2 id="overlap">Chart Overlap Matrix</h2>
