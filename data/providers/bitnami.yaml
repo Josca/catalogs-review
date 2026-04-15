@@ -1,0 +1,108 @@
+provider:
+  name: "Bitnami (Broadcom)"
+  short_name: "bitnami"
+  url: "https://bitnami.com/stacks/helm"
+  description: >
+    Bitnami, now part of Broadcom (via VMware acquisition), maintains one of the largest
+    curated Helm chart catalogs. Charts are continuously built, tested, and updated with
+    the latest application versions and security patches. Widely adopted across enterprise
+    and community Kubernetes deployments.
+  certification_process: >
+    Charts go through Bitnami's automated CI/CD pipeline including multi-platform builds,
+    automated functional testing, container image hardening (non-root, minimal base images),
+    and CIS benchmark compliance. Each chart release is tested against multiple Kubernetes
+    versions. Bitnami follows a "continuously updated" model where charts are rebuilt
+    whenever upstream app versions or base images change.
+  support_model: >
+    Community support via GitHub issues for open-source charts. Enterprise support available
+    through VMware Tanzu / Broadcom support agreements. Bitnami Premium offers SLA-backed
+    support, custom image builds, and dedicated assistance.
+  security:
+    scanning: "Automated daily vulnerability scanning with Trivy and Grype; container images rebuilt on CVE detection"
+    signing: "Charts and images signed with Cosign; SBOM (Software Bill of Materials) provided for all images"
+    cve_response: "Automated rebuild pipeline triggers on CVE detection; critical CVEs typically patched within 24-48 hours"
+  update_cadence: "Continuous — charts rebuilt automatically when upstream releases new versions or CVEs are detected; typically multiple updates per week per chart"
+  oci_support: true
+  licensing: "Open source (Apache 2.0) for charts and community images; Bitnami Premium requires commercial license"
+
+charts:
+  - name: "postgresql"
+    category: "database"
+    app_version: "16.2"
+    chart_version: "14.2.3"
+    last_updated: "2026-03-12"
+  - name: "mariadb"
+    category: "database"
+    app_version: "11.3"
+    chart_version: "16.3.1"
+    last_updated: "2026-03-10"
+  - name: "redis"
+    category: "database"
+    app_version: "7.2"
+    chart_version: "18.9.1"
+    last_updated: "2026-03-11"
+  - name: "nginx"
+    category: "web-server"
+    app_version: "1.25"
+    chart_version: "15.8.2"
+    last_updated: "2026-03-12"
+  - name: "apache-httpd"
+    category: "web-server"
+    app_version: "2.4"
+    chart_version: "10.5.0"
+    last_updated: "2026-03-08"
+  - name: "mongodb"
+    category: "database"
+    app_version: "7.0"
+    chart_version: "14.12.0"
+    last_updated: "2026-03-11"
+  - name: "kafka"
+    category: "messaging"
+    app_version: "3.7"
+    chart_version: "27.1.0"
+    last_updated: "2026-03-12"
+  - name: "rabbitmq"
+    category: "messaging"
+    app_version: "3.13"
+    chart_version: "13.0.2"
+    last_updated: "2026-03-10"
+  - name: "elasticsearch"
+    category: "monitoring"
+    app_version: "8.13"
+    chart_version: "20.0.1"
+    last_updated: "2026-03-09"
+  - name: "grafana"
+    category: "monitoring"
+    app_version: "10.4"
+    chart_version: "9.8.0"
+    last_updated: "2026-03-11"
+  - name: "prometheus"
+    category: "monitoring"
+    app_version: "2.50"
+    chart_version: "0.5.0"
+    last_updated: "2026-03-12"
+  - name: "keycloak"
+    category: "security"
+    app_version: "24.0"
+    chart_version: "19.3.0"
+    last_updated: "2026-03-05"
+  - name: "minio"
+    category: "storage"
+    app_version: "2024.03"
+    chart_version: "13.4.0"
+    last_updated: "2026-03-10"
+  - name: "wordpress"
+    category: "cms"
+    app_version: "6.5"
+    chart_version: "20.1.0"
+    last_updated: "2026-03-12"
+  - name: "mysql"
+    category: "database"
+    app_version: "8.3"
+    chart_version: "10.1.0"
+    last_updated: "2026-03-08"
+  - name: "tomcat"
+    category: "web-server"
+    app_version: "10.1"
+    chart_version: "11.2.0"
+    last_updated: "2026-03-06"

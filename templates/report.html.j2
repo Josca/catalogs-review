@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Helm Chart Providers Overview</title>
+    <style>
+        :root {
+            --color-primary: #1a365d;
+            --color-secondary: #2b6cb0;
+            --color-accent: #3182ce;
+            --color-bg: #ffffff;
+            --color-bg-alt: #f7fafc;
+            --color-border: #e2e8f0;
+            --color-text: #2d3748;
+            --color-text-light: #718096;
+            --color-success: #38a169;
+            --color-warning: #d69e2e;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            color: var(--color-text);
+            line-height: 1.6;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--color-bg);
+        }
+
+        h1 {
+            color: var(--color-primary);
+            font-size: 2rem;
+            border-bottom: 3px solid var(--color-accent);
+            padding-bottom: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            color: var(--color-primary);
+            font-size: 1.5rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: 0.3rem;
+        }
+
+        h3 {
+            color: var(--color-secondary);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .meta {
+            color: var(--color-text-light);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
+        .summary-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-accent);
+        }
+
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: var(--color-text-light);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+        }
+
+        th, td {
+            padding: 0.6rem 0.8rem;
+            text-align: left;
+            border: 1px solid var(--color-border);
+        }
+
+        th {
+            background: var(--color-primary);
+            color: white;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        tr:nth-child(even) { background: var(--color-bg-alt); }
+        tr:hover { background: #edf2f7; }
+
+        .overlap-matrix td.available {
+            background: #c6f6d5;
+            text-align: center;
+            font-weight: 600;
+            color: var(--color-success);
+        }
+
+        .overlap-matrix td.unavailable {
+            background: #fff5f5;
+            text-align: center;
+            color: #e53e3e;
+        }
+
+        .overlap-matrix td.chart-name {
+            font-weight: 600;
+        }
+
+        .provider-section {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            background: var(--color-bg);
+        }
+
+        .provider-section h2 {
+            margin-top: 0;
+        }
+
+        .provider-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .provider-meta dt {
+            font-weight: 600;
+            color: var(--color-secondary);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
+        .provider-meta dd {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        a { color: var(--color-accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .category-badge {
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            background: #ebf4ff;
+            color: var(--color-secondary);
+        }
+
+        .toc {
+            background: var(--color-bg-alt);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1rem 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .toc h3 { margin-top: 0; }
+        .toc ul { list-style: none; padding-left: 0; }
+        .toc li { padding: 0.2rem 0; }
+        .toc li::before { content: "— "; color: var(--color-text-light); }
+
+        @media print {
+            body { padding: 1rem; max-width: 100%; }
+            .provider-section { break-inside: avoid; }
+            h2 { break-after: avoid; }
+            table { font-size: 0.8rem; }
+            .no-print { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .provider-meta { grid-template-columns: 1fr; }
+            .summary-stats { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Enterprise Helm Chart Providers Overview</h1>
+<p class="meta">Generated on {{ generated_at }} | {{ providers | length }} providers | {{ total_charts }} total charts tracked</p>
+
+<nav class="toc">
+    <h3>Contents</h3>
+    <ul>
+        <li><a href="#executive-summary">Executive Summary</a></li>
+        <li><a href="#comparison">Provider Comparison</a></li>
+        <li><a href="#overlap">Chart Overlap Matrix</a></li>
+        {% for p in providers %}
+        <li><a href="#{{ p.provider.short_name }}">{{ p.provider.name }} — Chart Catalog</a></li>
+        {% endfor %}
+    </ul>
+</nav>
+
+<!-- Summary Stats -->
+<div class="summary-stats">
+    <div class="stat-card">
+        <div class="number">{{ providers | length }}</div>
+        <div class="label">Providers</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ total_charts }}</div>
+        <div class="label">Total Charts</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ unique_charts }}</div>
+        <div class="label">Unique Applications</div>
+    </div>
+    <div class="stat-card">
+        <div class="number">{{ categories | length }}</div>
+        <div class="label">Categories</div>
+    </div>
+</div>
+
+<!-- Executive Summary -->
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This report compares {{ providers | length }} enterprise Helm chart providers, evaluating their certification processes, support models, security practices, and chart catalogs.</p>
+
+<!-- Provider Comparison Table -->
+<h2 id="comparison">Provider Comparison</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Attribute</th>
+            {% for p in providers %}
+            <th>{{ p.provider.name }}</th>
+            {% endfor %}
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><strong>URL</strong></td>
+            {% for p in providers %}
+            <td><a href="{{ p.provider.url }}">{{ p.provider.url | truncate(40) }}</a></td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Total Charts</strong></td>
+            {% for p in providers %}
+            <td>{{ p.charts | length }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Certification</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.certification_process | truncate(150) }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Support Model</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.support_model | truncate(150) }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Vulnerability Scanning</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.security.scanning }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Chart Signing</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.security.signing }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>CVE Response</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.security.cve_response }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Update Cadence</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.update_cadence }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>OCI Support</strong></td>
+            {% for p in providers %}
+            <td>{{ "Yes" if p.provider.oci_support else "No" }}</td>
+            {% endfor %}
+        </tr>
+        <tr>
+            <td><strong>Licensing</strong></td>
+            {% for p in providers %}
+            <td>{{ p.provider.licensing }}</td>
+            {% endfor %}
+        </tr>
+    </tbody>
+</table>
+
+<!-- Chart Overlap Matrix -->
+<h2 id="overlap">Chart Overlap Matrix</h2>
+<p>Shows which applications are available from each provider. Charts available from multiple providers enable multi-vendor strategies.</p>
+<table class="overlap-matrix">
+    <thead>
+        <tr>
+            <th>Application</th>
+            <th>Category</th>
+            {% for p in providers %}
+            <th>{{ p.provider.short_name | upper }}</th>
+            {% endfor %}
+            <th>Providers</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for chart_name, info in overlap | dictsort %}
+        <tr>
+            <td class="chart-name">{{ chart_name }}</td>
+            <td><span class="category-badge">{{ info.category }}</span></td>
+            {% for p in providers %}
+            {% if p.provider.short_name in info.providers %}
+            <td class="available">&#10003;</td>
+            {% else %}
+            <td class="unavailable">&#10007;</td>
+            {% endif %}
+            {% endfor %}
+            <td>{{ info.providers | length }}/{{ providers | length }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- Per-Provider Detail Sections -->
+{% for p in providers %}
+<div class="provider-section" id="{{ p.provider.short_name }}">
+    <h2>{{ p.provider.name }}</h2>
+    <p>{{ p.provider.description }}</p>
+    <p><strong>Catalog:</strong> <a href="{{ p.provider.url }}">{{ p.provider.url }}</a></p>
+
+    <div class="provider-meta">
+        <div>
+            <dt>Certification Process</dt>
+            <dd>{{ p.provider.certification_process }}</dd>
+        </div>
+        <div>
+            <dt>Support Model</dt>
+            <dd>{{ p.provider.support_model }}</dd>
+        </div>
+        <div>
+            <dt>Security — Scanning</dt>
+            <dd>{{ p.provider.security.scanning }}</dd>
+        </div>
+        <div>
+            <dt>Security — Signing</dt>
+            <dd>{{ p.provider.security.signing }}</dd>
+        </div>
+        <div>
+            <dt>Security — CVE Response</dt>
+            <dd>{{ p.provider.security.cve_response }}</dd>
+        </div>
+        <div>
+            <dt>Update Cadence</dt>
+            <dd>{{ p.provider.update_cadence }}</dd>
+        </div>
+        <div>
+            <dt>OCI Support</dt>
+            <dd>{{ "Yes" if p.provider.oci_support else "No" }}</dd>
+        </div>
+        <div>
+            <dt>Licensing</dt>
+            <dd>{{ p.provider.licensing }}</dd>
+        </div>
+    </div>
+
+    <h3>Chart Catalog ({{ p.charts | length }} charts)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Chart Name</th>
+                <th>Category</th>
+                <th>App Version</th>
+                <th>Chart Version</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chart in p.charts | sort(attribute='name') %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td><strong>{{ chart.name }}</strong></td>
+                <td><span class="category-badge">{{ chart.category }}</span></td>
+                <td>{{ chart.app_version }}</td>
+                <td>{{ chart.chart_version }}</td>
+                <td>{{ chart.last_updated }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}
+
+<footer style="margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--color-border); color: var(--color-text-light); font-size: 0.8rem;">
+    <p>Report generated on {{ generated_at }}. Data is representative and should be verified against current provider catalogs before making procurement decisions.</p>
+</footer>
+
+</body>
+</html>
