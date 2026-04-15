@@ -217,6 +217,7 @@ charts:
     support_type: "enterprise"
   - name: "strimzi-kafka-operator"
     category: "networking"
+    app: "kafka"
   - name: "teleport"
     category: "security"
   - name: "tempo"

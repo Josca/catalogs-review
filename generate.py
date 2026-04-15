@@ -39,16 +39,20 @@ def resolve_chart_urls(data):
 
 
 def compute_overlap(providers):
-    """Build a dict of chart_name -> {category, providers: [short_names]}."""
+    """Build a dict of app_name -> {category, providers: [short_names]}.
+
+    Charts with an 'app' field are grouped under that canonical name;
+    otherwise the chart 'name' is used as the key.
+    """
     overlap = {}
     for p in providers:
         short = p["provider"]["short_name"]
         for chart in p.get("charts", []):
-            name = chart["name"]
-            if name not in overlap:
-                overlap[name] = {"category": chart["category"], "providers": []}
-            if short not in overlap[name]["providers"]:
-                overlap[name]["providers"].append(short)
+            app = chart.get("app", chart["name"])
+            if app not in overlap:
+                overlap[app] = {"category": chart["category"], "providers": []}
+            if short not in overlap[app]["providers"]:
+                overlap[app]["providers"].append(short)
     return overlap
 
 
