@@ -92,7 +92,8 @@
 
         table {
             width: 100%;
-            border-collapse: collapse;
+            border-collapse: separate;
+            border-spacing: 0;
             margin: 1rem 0;
             font-size: 0.9rem;
         }
@@ -108,6 +109,9 @@
             color: white;
             font-weight: 600;
             white-space: nowrap;
+            position: sticky;
+            top: 0;
+            z-index: 1;
         }
 
         tr:nth-child(even) { background: var(--color-bg-alt); }
@@ -214,7 +218,6 @@
         .sortable th[data-sort] {
             cursor: pointer;
             user-select: none;
-            position: relative;
             padding-right: 1.4em;
         }
 
