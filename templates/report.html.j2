@@ -189,6 +189,37 @@
         .toc li { padding: 0.2rem 0; }
         .toc li::before { content: "— "; color: var(--color-text-light); }
 
+        .sortable th[data-sort] {
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            padding-right: 1.4em;
+        }
+
+        .sortable th[data-sort]:hover {
+            background: var(--color-secondary);
+        }
+
+        .sortable th[data-sort]::after {
+            content: "⇅";
+            position: absolute;
+            right: 0.3em;
+            opacity: 0.4;
+            font-size: 0.75em;
+        }
+
+        .sortable th.sort-asc::after { content: "▲"; opacity: 0.9; }
+        .sortable th.sort-desc::after { content: "▼"; opacity: 0.9; }
+
+        .sortable th.sort-secondary.sort-asc::after { content: "△"; opacity: 0.7; }
+        .sortable th.sort-secondary.sort-desc::after { content: "▽"; opacity: 0.7; }
+
+        .sort-hint {
+            font-size: 0.8rem;
+            color: var(--color-text-light);
+            margin-bottom: 0.5rem;
+        }
+
         @media print {
             body { padding: 1rem; max-width: 100%; }
             .provider-section { break-inside: avoid; }
@@ -246,34 +277,35 @@
 <!-- Chart Overlap Matrix -->
 <h2 id="overlap">Chart Overlap Matrix</h2>
 <p>Shows which applications are available from each provider. Charts available from multiple providers enable multi-vendor strategies.</p>
-<table class="overlap-matrix">
+<p class="sort-hint">Click column headers to sort. Shift+click to add secondary sort. Click again to reverse.</p>
+<table class="overlap-matrix sortable" id="overlap-table">
     <thead>
         <tr>
-            <th>Application</th>
-            <th>Upstream Repo</th>
-            <th>Stars</th>
-            <th>Category</th>
+            <th data-sort="string">Application</th>
+            <th data-sort="string">Upstream Repo</th>
+            <th data-sort="number">Stars</th>
+            <th data-sort="string">Category</th>
             {% for p in providers %}
-            <th>{{ p.provider.short_name | upper }}</th>
+            <th data-sort="number">{{ p.provider.short_name | upper }}</th>
             {% endfor %}
-            <th>Providers</th>
+            <th data-sort="number">Providers</th>
         </tr>
     </thead>
     <tbody>
         {% for chart_name, info in overlap | dictsort %}
         <tr>
-            <td class="chart-name">{{ chart_name }}</td>
-            <td>{% if info.repo %}<a href="https://github.com/{{ info.repo }}">{{ info.repo }}</a>{% else %}—{% endif %}</td>
-            <td>{{ info.stars if info.stars else "—" }}</td>
-            <td><span class="category-badge">{{ info.category }}</span></td>
+            <td class="chart-name" data-value="{{ chart_name }}">{{ chart_name }}</td>
+            <td data-value="{{ info.repo }}">{% if info.repo %}<a href="https://github.com/{{ info.repo }}">{{ info.repo }}</a>{% else %}—{% endif %}</td>
+            <td data-value="{{ info.stars }}">{{ info.stars if info.stars else "—" }}</td>
+            <td data-value="{{ info.category }}"><span class="category-badge">{{ info.category }}</span></td>
             {% for p in providers %}
             {% if p.provider.short_name in info.providers %}
-            <td class="available">&#10003;</td>
+            <td class="available" data-value="1">&#10003;</td>
             {% else %}
-            <td class="unavailable">&#10007;</td>
+            <td class="unavailable" data-value="0">&#10007;</td>
             {% endif %}
             {% endfor %}
-            <td>{{ info.providers | length }}/{{ providers | length }}</td>
+            <td data-value="{{ info.providers | length }}">{{ info.providers | length }}/{{ providers | length }}</td>
         </tr>
         {% endfor %}
     </tbody>
@@ -347,5 +379,86 @@
     <p>Report generated on {{ generated_at }}. Data is representative and should be verified against current provider catalogs before making procurement decisions.</p>
 </footer>
 
+<script>
+(function() {
+    var table = document.getElementById('overlap-table');
+    if (!table) return;
+
+    var thead = table.querySelector('thead');
+    var tbody = table.querySelector('tbody');
+    var headers = thead.querySelectorAll('th[data-sort]');
+    // sortKeys: array of {col, dir, type} in priority order
+    var sortKeys = [];
+
+    function getValue(row, col, type) {
+        var td = row.children[col];
+        var v = td.getAttribute('data-value');
+        if (type === 'number') {
+            var n = parseFloat(v);
+            return isNaN(n) ? -1 : n;
+        }
+        return (v || '').toLowerCase();
+    }
+
+    function compareRows(a, b) {
+        for (var i = 0; i < sortKeys.length; i++) {
+            var key = sortKeys[i];
+            var va = getValue(a, key.col, key.type);
+            var vb = getValue(b, key.col, key.type);
+            var cmp = 0;
+            if (va < vb) cmp = -1;
+            else if (va > vb) cmp = 1;
+            if (cmp !== 0) return cmp * key.dir;
+        }
+        return 0;
+    }
+
+    function sortTable() {
+        var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
+        rows.sort(compareRows);
+        rows.forEach(function(row) { tbody.appendChild(row); });
+    }
+
+    function updateIndicators() {
+        headers.forEach(function(th) {
+            th.classList.remove('sort-asc', 'sort-desc', 'sort-secondary');
+        });
+        sortKeys.forEach(function(key, i) {
+            var th = headers[key.col];
+            th.classList.add(key.dir === 1 ? 'sort-asc' : 'sort-desc');
+            if (i > 0) th.classList.add('sort-secondary');
+        });
+    }
+
+    headers.forEach(function(th, colIndex) {
+        th.addEventListener('click', function(e) {
+            var type = th.getAttribute('data-sort');
+            var existing = -1;
+            for (var i = 0; i < sortKeys.length; i++) {
+                if (sortKeys[i].col === colIndex) { existing = i; break; }
+            }
+
+            if (e.shiftKey) {
+                // Shift+click: add/toggle secondary sort
+                if (existing >= 0) {
+                    sortKeys[existing].dir *= -1;
+                } else {
+                    sortKeys.push({col: colIndex, dir: type === 'number' ? -1 : 1, type: type});
+                }
+            } else {
+                // Regular click: set as primary sort
+                if (existing === 0) {
+                    sortKeys[0].dir *= -1;
+                } else {
+                    sortKeys = [{col: colIndex, dir: type === 'number' ? -1 : 1, type: type}];
+                }
+            }
+
+            updateIndicators();
+            sortTable();
+        });
+    });
+})();
+</script>
 </body>
 </html>
