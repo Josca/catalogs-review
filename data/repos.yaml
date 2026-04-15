@@ -316,9 +316,6 @@ nessie:
 nginx:
   repo: "nginx/nginx"
   stars: 29941
-nginx-ingress-controller:
-  repo: "kubernetes/ingress-nginx"
-  stars: 19498
 nginx-ingress-f5:
   repo: "nginx/kubernetes-ingress"
   stars: 5003

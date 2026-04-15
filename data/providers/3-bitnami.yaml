@@ -189,6 +189,7 @@ charts:
   category: application-server
 - name: nginx-ingress-controller
   category: infrastructure
+  app: ingress-nginx
 - name: node-exporter
   category: monitoring
   app: node-exporter
