@@ -185,6 +185,8 @@ charts:
   category: monitoring
 - name: openfeature
   category: developer-tools
+- name: opensearch
+  category: monitoring
 - name: opentelemetry
   category: monitoring
 - name: penpot
