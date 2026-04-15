@@ -11,6 +11,7 @@ from jinja2 import Environment, FileSystemLoader
 
 ROOT = Path(__file__).resolve().parent
 DATA_DIR = ROOT / "data" / "providers"
+REPOS_FILE = ROOT / "data" / "repos.yaml"
 TEMPLATE_DIR = ROOT / "templates"
 OUTPUT_DIR = ROOT / "output"
 
@@ -38,19 +39,32 @@ def resolve_chart_urls(data):
             chart["url"] = ""
 
 
-def compute_overlap(providers):
-    """Build a dict of app_name -> {category, providers: [short_names]}.
+def load_repos():
+    """Load the app -> GitHub repo mapping."""
+    if REPOS_FILE.exists():
+        with open(REPOS_FILE) as f:
+            return yaml.safe_load(f) or {}
+    return {}
+
+
+def compute_overlap(providers, repos=None):
+    """Build a dict of app_name -> {category, providers, repo}.
 
     Charts with an 'app' field are grouped under that canonical name;
     otherwise the chart 'name' is used as the key.
     """
+    repos = repos or {}
     overlap = {}
     for p in providers:
         short = p["provider"]["short_name"]
         for chart in p.get("charts", []):
             app = chart.get("app", chart["name"])
             if app not in overlap:
-                overlap[app] = {"category": chart["category"], "providers": []}
+                overlap[app] = {
+                    "category": chart["category"],
+                    "providers": [],
+                    "repo": repos.get(app, ""),
+                }
             if short not in overlap[app]["providers"]:
                 overlap[app]["providers"].append(short)
     return overlap
@@ -74,7 +88,8 @@ def main():
         print("Error: no provider YAML files found", file=sys.stderr)
         sys.exit(1)
 
-    overlap = compute_overlap(providers)
+    repos = load_repos()
+    overlap = compute_overlap(providers, repos)
     total_charts, unique_charts, categories = compute_stats(providers, overlap)
 
     env = Environment(loader=FileSystemLoader(str(TEMPLATE_DIR)), autoescape=True)

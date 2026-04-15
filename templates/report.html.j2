@@ -326,6 +326,7 @@
     <thead>
         <tr>
             <th>Application</th>
+            <th>Upstream Repo</th>
             <th>Category</th>
             {% for p in providers %}
             <th>{{ p.provider.short_name | upper }}</th>
@@ -337,6 +338,7 @@
         {% for chart_name, info in overlap | dictsort %}
         <tr>
             <td class="chart-name">{{ chart_name }}</td>
+            <td>{% if info.repo %}<a href="https://github.com/{{ info.repo }}">{{ info.repo }}</a>{% else %}—{% endif %}</td>
             <td><span class="category-badge">{{ info.category }}</span></td>
             {% for p in providers %}
             {% if p.provider.short_name in info.providers %}
