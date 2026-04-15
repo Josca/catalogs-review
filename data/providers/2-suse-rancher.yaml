@@ -1,193 +1,186 @@
 provider:
-  name: "SUSE Rancher"
-  short_name: "suse-rancher"
-  url: "https://apps.rancher.io/applications?type=helm_chart"
-  description: >
-    SUSE Rancher provides curated and validated Helm charts through the Rancher
-    Application Collection and partner chart repositories. Charts are tested for
-    compatibility with Rancher-managed Kubernetes clusters and RKE2/K3s distributions.
-  certification_process: >
-    Charts undergo validation testing against SUSE's supported Kubernetes distributions
-    (RKE2, K3s). Partner charts are reviewed for security compliance, Kubernetes best
-    practices, and integration with Rancher's multi-cluster management. SUSE maintains
-    a curated application collection with charts verified for enterprise deployment.
-  support_model: >
-    Enterprise support available through SUSE subscription plans. Partner charts receive
-    coordinated support between SUSE and the ISV partner. SUSE provides L1/L2 support
-    with escalation to partners for application-specific issues.
-  security:
-    scanning: "Container images scanned via SUSE NeuVector for vulnerabilities and compliance"
-    signing: "Charts signed with Cosign; container images verified through SUSE's supply chain security"
-    cve_response: "SUSE Security Advisories issued for tracked CVEs; critical vulnerabilities addressed within published SLA timelines"
-  update_cadence: "Charts updated alongside Rancher releases (approximately every 6-8 weeks for minor releases, patches as needed)"
-  oci_support: true
-  licensing: "SUSE subscription required for enterprise support; Rancher itself is open source (Apache 2.0)"
-  chart_url_template: "https://apps.rancher.io/applications/{name}"
+  name: SUSE Rancher
+  short_name: suse-rancher
+  url: https://apps.rancher.io/applications?type=helm_chart
+  description: 'SUSE Rancher provides curated and validated Helm charts through the Rancher Application Collection and partner
+    chart repositories. Charts are tested for compatibility with Rancher-managed Kubernetes clusters and RKE2/K3s distributions.
 
+    '
+  certification_process: 'Charts undergo validation testing against SUSE''s supported Kubernetes distributions (RKE2, K3s).
+    Partner charts are reviewed for security compliance, Kubernetes best practices, and integration with Rancher''s multi-cluster
+    management. SUSE maintains a curated application collection with charts verified for enterprise deployment.
+
+    '
+  support_model: 'Enterprise support available through SUSE subscription plans. Partner charts receive coordinated support
+    between SUSE and the ISV partner. SUSE provides L1/L2 support with escalation to partners for application-specific issues.
+
+    '
+  security:
+    scanning: Container images scanned via SUSE NeuVector for vulnerabilities and compliance
+    signing: Charts signed with Cosign; container images verified through SUSE's supply chain security
+    cve_response: SUSE Security Advisories issued for tracked CVEs; critical vulnerabilities addressed within published SLA
+      timelines
+  update_cadence: Charts updated alongside Rancher releases (approximately every 6-8 weeks for minor releases, patches as
+    needed)
+  oci_support: true
+  licensing: SUSE subscription required for enterprise support; Rancher itself is open source (Apache 2.0)
+  chart_url_template: https://apps.rancher.io/applications/{name}
 charts:
-  # Page 1
-  - name: "alertmanager"
-    category: "observability"
-  - name: "apache-airflow"
-    category: "workflow-management"
-  - name: "apache-apisix"
-    category: "infrastructure"
-    app: "apisix"
-  - name: "apache-kafka"
-    category: "message-broker"
-    app: "kafka"
-  - name: "apache-pulsar"
-    category: "message-broker"
-  - name: "apache-tika-server"
-    category: "developer-tools"
-    app: "tika"
-  - name: "argo-cd"
-    category: "ci-cd"
-  - name: "argo-rollouts"
-    category: "kubernetes-extensions"
-  - name: "argo-workflows"
-    category: "workflow-management"
-  - name: "cert-manager"
-    category: "security"
-  # Page 2
-  - name: "cert-manager-approver-policy"
-    category: "security"
-  - name: "cert-manager-approver-policy-fips"
-    category: "security"
-  - name: "cert-manager-fips"
-    category: "security"
-  - name: "cloudnativepg"
-    category: "database"
-  - name: "coredns"
-    category: "infrastructure"
-  - name: "dex"
-    category: "security"
-  - name: "etcd"
-    category: "database"
-  - name: "external-secrets-operator"
-    category: "security"
-    app: "external-secrets"
-  - name: "externaldns"
-    category: "infrastructure"
-    app: "external-dns"
-  - name: "fluent-bit"
-    category: "observability"
-  # Page 3
-  - name: "fluentd"
-    category: "observability"
-  - name: "grafana"
-    category: "observability"
-  - name: "harbor"
-    category: "security"
-  - name: "influxdb"
-    category: "database"
-  - name: "istio"
-    category: "kubernetes-extensions"
-  - name: "jaeger-operator"
-    category: "observability"
-    app: "jaeger"
-  - name: "kiali"
-    category: "observability"
-  - name: "kube-state-metrics"
-    category: "observability"
-  - name: "kubernetes-cluster-autoscaler"
-    category: "infrastructure"
-    app: "cluster-autoscaler"
-  - name: "kubernetes-csi-driver-nfs"
-    category: "infrastructure"
-  # Page 4
-  - name: "kured"
-    category: "infrastructure"
-  - name: "local-path-provisioner"
-    category: "infrastructure"
-  - name: "local-path-provisioner-fips"
-    category: "infrastructure"
-  - name: "mariadb"
-    category: "database"
-  - name: "metacontroller"
-    category: "kubernetes-extensions"
-  - name: "metallb"
-    category: "infrastructure"
-  - name: "metallb-fips"
-    category: "infrastructure"
-  - name: "milvus"
-    category: "database"
-  - name: "minio"
-    category: "infrastructure"
-  - name: "nats"
-    category: "message-broker"
-  # Page 5
-  - name: "oauth2-proxy"
-    category: "security"
-  - name: "ollama"
-    category: "artificial-intelligence"
-  - name: "open-webui"
-    category: "artificial-intelligence"
-  - name: "open-webui-mcpo"
-    category: "artificial-intelligence"
-  - name: "open-webui-pipelines"
-    category: "artificial-intelligence"
-  - name: "opencost"
-    category: "observability"
-  - name: "opensearch"
-    category: "observability"
-  - name: "opentelemetry-collector"
-    category: "observability"
-    app: "opentelemetry"
-  - name: "opentelemetry-operator"
-    category: "observability"
-    app: "opentelemetry"
-  - name: "penpot"
-    category: "developer-tools"
-  # Page 6
-  - name: "policy-reporter"
-    category: "observability"
-  - name: "postgresql"
-    category: "database"
-  - name: "prometheus"
-    category: "observability"
-  - name: "prometheus-blackbox-exporter"
-    category: "observability"
-  - name: "prometheus-node-exporter"
-    category: "observability"
-    app: "node-exporter"
-  - name: "prometheus-operator"
-    category: "observability"
-  - name: "prometheus-pushgateway"
-    category: "observability"
-  - name: "prometheus-statsd-exporter"
-    category: "observability"
-  - name: "pytorch"
-    category: "artificial-intelligence"
-  - name: "redis"
-    category: "message-broker"
-  # Page 7
-  - name: "suse-ai-deployer"
-    category: "artificial-intelligence"
-  - name: "suse-ai-observability-extension"
-    category: "artificial-intelligence"
-  - name: "suse-security-admission-controller"
-    category: "security"
-  - name: "suse-security-vulnerability-scanner"
-    category: "security"
-  - name: "suse-storage"
-    category: "infrastructure"
-  - name: "suse-virtual-cluster-engine"
-    category: "kubernetes-extensions"
-  - name: "thanos"
-    category: "observability"
-  - name: "traefik-proxy"
-    category: "infrastructure"
-    app: "traefik"
-  - name: "traefik-proxy-fips"
-    category: "infrastructure"
-    app: "traefik"
-  - name: "valkey"
-    category: "database"
-  # Page 8
-  - name: "vault"
-    category: "security"
-  - name: "velero"
-    category: "infrastructure"
-  - name: "vllm"
-    category: "artificial-intelligence"
+- name: alertmanager
+  category: monitoring
+- name: apache-airflow
+  category: workflow-management
+- name: apache-apisix
+  category: infrastructure
+  app: apisix
+- name: apache-kafka
+  category: message-broker
+  app: kafka
+- name: apache-pulsar
+  category: message-broker
+- name: apache-tika-server
+  category: developer-tools
+  app: tika
+- name: argo-cd
+  category: ci-cd
+- name: argo-rollouts
+  category: kubernetes-extensions
+- name: argo-workflows
+  category: workflow-management
+- name: cert-manager
+  category: security
+- name: cert-manager-approver-policy
+  category: security
+- name: cert-manager-approver-policy-fips
+  category: security
+- name: cert-manager-fips
+  category: security
+- name: cloudnativepg
+  category: database
+- name: coredns
+  category: infrastructure
+- name: dex
+  category: security
+- name: etcd
+  category: database
+- name: external-secrets-operator
+  category: security
+  app: external-secrets
+- name: externaldns
+  category: infrastructure
+  app: external-dns
+- name: fluent-bit
+  category: monitoring
+- name: fluentd
+  category: monitoring
+- name: grafana
+  category: monitoring
+- name: harbor
+  category: security
+- name: influxdb
+  category: database
+- name: istio
+  category: kubernetes-extensions
+- name: jaeger-operator
+  category: monitoring
+  app: jaeger
+- name: kiali
+  category: monitoring
+- name: kube-state-metrics
+  category: monitoring
+- name: kubernetes-cluster-autoscaler
+  category: infrastructure
+  app: cluster-autoscaler
+- name: kubernetes-csi-driver-nfs
+  category: infrastructure
+- name: kured
+  category: infrastructure
+- name: local-path-provisioner
+  category: infrastructure
+- name: local-path-provisioner-fips
+  category: infrastructure
+- name: mariadb
+  category: database
+- name: metacontroller
+  category: kubernetes-extensions
+- name: metallb
+  category: infrastructure
+- name: metallb-fips
+  category: infrastructure
+- name: milvus
+  category: database
+- name: minio
+  category: infrastructure
+- name: nats
+  category: message-broker
+- name: oauth2-proxy
+  category: security
+- name: ollama
+  category: ai-ml
+- name: open-webui
+  category: ai-ml
+- name: open-webui-mcpo
+  category: ai-ml
+- name: open-webui-pipelines
+  category: ai-ml
+- name: opencost
+  category: monitoring
+- name: opensearch
+  category: monitoring
+- name: opentelemetry-collector
+  category: monitoring
+  app: opentelemetry
+- name: opentelemetry-operator
+  category: monitoring
+  app: opentelemetry
+- name: penpot
+  category: developer-tools
+- name: policy-reporter
+  category: monitoring
+- name: postgresql
+  category: database
+- name: prometheus
+  category: monitoring
+- name: prometheus-blackbox-exporter
+  category: monitoring
+- name: prometheus-node-exporter
+  category: monitoring
+  app: node-exporter
+- name: prometheus-operator
+  category: monitoring
+- name: prometheus-pushgateway
+  category: monitoring
+- name: prometheus-statsd-exporter
+  category: monitoring
+- name: pytorch
+  category: ai-ml
+- name: redis
+  category: message-broker
+- name: suse-ai-deployer
+  category: ai-ml
+- name: suse-ai-observability-extension
+  category: ai-ml
+- name: suse-security-admission-controller
+  category: security
+- name: suse-security-vulnerability-scanner
+  category: security
+- name: suse-storage
+  category: infrastructure
+- name: suse-virtual-cluster-engine
+  category: kubernetes-extensions
+- name: thanos
+  category: monitoring
+- name: traefik-proxy
+  category: infrastructure
+  app: traefik
+- name: traefik-proxy-fips
+  category: infrastructure
+  app: traefik
+- name: valkey
+  category: database
+- name: vault
+  category: security
+- name: velero
+  category: infrastructure
+- name: vllm
+  category: ai-ml
