@@ -198,6 +198,7 @@ charts:
   category: infrastructure
 - name: banzaicloud-kafka-operator
   category: message-broker
+  app: kafka
 - name: beegfs-csi-driver-operator
   category: storage
 - name: bookkeeper-operator
@@ -232,6 +233,7 @@ charts:
   category: database
 - name: clickhouse-operator
   category: database
+  app: clickhouse
 - name: cloudnative-pg
   category: database
   app: cloudnativepg
@@ -269,6 +271,7 @@ charts:
   app: dapr
 - name: datadog-operator
   category: monitoring
+  app: datadog
 - name: datasance-pot-operator
   category: developer-tools
 - name: datatrucker-operator
@@ -346,8 +349,10 @@ charts:
   category: ci-cd
 - name: gitlab-runner-operator
   category: ci-cd
+  app: gitlab-runner
 - name: grafana-operator
   category: monitoring
+  app: grafana
 - name: gravitee-kubernetes-operator
   category: ci-cd
 - name: halkyon
@@ -372,6 +377,7 @@ charts:
   category: security
 - name: hpe-csi-operator
   category: storage
+  app: hpe-csi
 - name: hpe-ezmeral-csi-operator
   category: storage
 - name: hyperfoil-bundle
@@ -452,6 +458,7 @@ charts:
   category: security
 - name: keydb-operator
   category: database
+  app: keydb
 - name: kiali
   category: monitoring
 - name: klusterlet
@@ -545,6 +552,7 @@ charts:
   category: infrastructure
 - name: mariadb-operator
   category: database
+  app: mariadb
 - name: mariadb-operator-app
   category: database
 - name: marin3r
@@ -569,8 +577,10 @@ charts:
   category: security
 - name: mongodb-atlas-kubernetes
   category: database
+  app: mongodb
 - name: mongodb-enterprise
   category: database
+  app: mongodb
 - name: mongodb-kubernetes
   category: database
   app: mongodb
@@ -581,6 +591,7 @@ charts:
   category: database
 - name: moodle-operator
   category: application-runtime
+  app: moodle
 - name: move2kube-operator
   category: infrastructure
 - name: multi-nic-cni-operator
@@ -599,6 +610,7 @@ charts:
   category: database
 - name: neo4j-kubernetes-operator
   category: database
+  app: neo4j
 - name: netobserv-operator
   category: monitoring
 - name: neuvector-operator
@@ -661,12 +673,16 @@ charts:
   category: security
 - name: percona-postgresql-operator
   category: database
+  app: postgresql
 - name: percona-server-mongodb-operator
   category: database
+  app: mongodb
 - name: percona-server-mysql-operator
   category: database
+  app: mysql
 - name: percona-xtradb-cluster-operator
   category: database
+  app: mysql
 - name: perses-operator
   category: monitoring
 - name: pinot-operator
@@ -683,8 +699,10 @@ charts:
   category: storage
 - name: postgres-operator
   category: database
+  app: postgresql
 - name: postgres-operator-krestomatio
   category: database
+  app: postgresql
 - name: postgresql
   category: database
 - name: postgresql-operator
@@ -725,6 +743,7 @@ charts:
   category: database
 - name: redis-enterprise
   category: database
+  app: redis
 - name: redis-operator
   category: database
   app: redis
@@ -836,6 +855,7 @@ charts:
   category: storage
 - name: traefikee-operator
   category: networking
+  app: traefik
 - name: trident-operator
   category: storage
 - name: trivy-operator
@@ -884,5 +904,6 @@ charts:
   category: database
 - name: zookeeper-operator
   category: storage
+  app: zookeeper
 - name: zoperator
   category: storage
