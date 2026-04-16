@@ -234,6 +234,7 @@ charts:
 - name: ArangoDBThe multi-model NoSQL Database
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e987434e1ad57318e250936
+  app: arangodb
 - name: Arcade OperatorOperator that deploys and manages the Red Hat Marketplace Arcade
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5fff21046a5891cc3a5171d0
@@ -358,6 +359,7 @@ charts:
 - name: calyptia-fluent-bitFluent Bit is a super fast
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/61d87331e4578f8bf95ed96f
+  app: fluent-bit
 - name: Carbonetes OperatorA Operator for creating Carbonetes Analyzer instances.
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/61847c67a9dc8c4fec3b302b
@@ -367,12 +369,14 @@ charts:
 - name: cert-manager Operator for Red Hat OpenShift
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/64f1ad6f3af5362f09c9ce16
+  app: cert-manager
 - name: Ciena v
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/62e9649e6193d181720268ee
 - name: CiliumeBPF-powered Networking, Observability, and Security
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/60423ec2c00b1279ffe35a68
+  app: cilium
 - name: CipherTrust Transparent Encryption for
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/646e5df15b3663fbdf56b52a
@@ -415,6 +419,7 @@ charts:
 - name: CloudNativePG
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/653fd4035eece8598f66d97b
+  app: cloudnativepg
 - name: Cluster Observability Operator
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/66827f25e29caf5c417726a7
@@ -512,18 +517,22 @@ charts:
 - name: Crunchy Postgre
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/630536c762d5aa534af14abe
+  app: postgresql
 - name: Crunchy Postgre
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98726c6c5dcb34dfbb19de
+  app: postgresql
 - name: Crunchy PostgreSQL HACrunchy PostgreSQL H
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98744f6c5dcb34dfbb1a09
 - name: Crunchy PostgreSQL Operator
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6304fa284bf4e65d7621984b
+  app: postgresql
 - name: Crunchy PostgreSQL Operator - crunchy-postgres-exporter
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5f5a5e3edb8497a63a4ef985
+  app: postgresql
 - name: Crunchy PostgreSQL PostGIS HA
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e987451d4ae96b7493f08f0
@@ -591,9 +600,11 @@ charts:
 - name: Datadog
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9874986c5dcb34dfbb1a12
+  app: datadog
 - name: DatadogApplication and Infrastructure monitoring
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98727d3f398525a0ceafb3
+  app: datadog
 - name: Datafloem
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/681de493c0b2e5776dd558f2
@@ -708,6 +719,7 @@ charts:
 - name: Elasticsearch (ECK) Operator
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5f32f067651c4c0bcecf1bfe
+  app: elasticsearch
 - name: enclaive vHSM
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/68909530118e8682253cd57e
@@ -899,6 +911,7 @@ charts:
 - name: Gatekeeper operator
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5fb5414e5e09a3c40183e64b
+  app: gatekeeper
 - name: GCP File
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6697c01c91500aeedfed1032
@@ -908,15 +921,18 @@ charts:
 - name: GitLab OpenShift OperatorDevOps platform to manage source code
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5ec3fcb08b6f188e53644c0f
+  app: gitlab
 - name: GitLab Runner
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9877e96c5dcb34dfbb1ac9
+  app: gitlab-runner
 - name: Gluu ServerIdentity and Access Management
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9872a5fc8e357926899383
 - name: Grafana Cloud Log Forwarder
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6244df7882c1490c1db96de7
+  app: grafana
 - name: Granulate Helm ChartReal Time Continuous Performance and Cost Optimization
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6390d066734375a32b17022a
@@ -942,15 +958,18 @@ charts:
 - name: HAProxy
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5ec3f9fc110f56bd24f2dd57
+  app: haproxy
 - name: HAProxy Enterprise
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98726bfc8e35792689937e
+  app: haproxy
 - name: HarperDB
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6466707e9c349fe7c87970fc
 - name: HashiCorp Vault
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/61954b7020da7eae27db0e2a
+  app: vault
 - name: Hazelcast Management Center
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98728c3f398525a0ceafb8
@@ -1664,6 +1683,7 @@ charts:
 - name: Kyverno OSSKyverno is a policy engine designed for
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/612685629a9b407267837117
+  app: kyverno
 - name: Laiye AI Foundry
   category: ai-ml
   url: https://catalog.redhat.com/en/software/container-stacks/detail/67232646959f118883dbad09
@@ -1727,6 +1747,7 @@ charts:
 - name: MariaDB Enterprise Operator
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/65789bcbe17f1b31944acb1d
+  app: mariadb
 - name: MasterClaw
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6603f2a11d7d6222dddab70a
@@ -1835,6 +1856,7 @@ charts:
 - name: metallb-operator
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/637c7a21eeaba30ca96e973f
+  app: metallb
 - name: micrOak
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/65e593772d7d87c906d1e032
@@ -1850,6 +1872,7 @@ charts:
 - name: MinIO Hybrid Cloud Object StorageMinIO is a high-performance,
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/60945b58d3f6d18cdbac26fe
+  app: minio
 - name: Mobifin EliteMobiFin Elite is one-of-a-kind
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/659556eca838a00eb8eb51fc
@@ -1881,9 +1904,11 @@ charts:
 - name: MongoDB Controllers for Kubernetes
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/67ed5e8673df79eaf9bd3891
+  app: mongodb
 - name: MongoDB Enterprise Kubernetes
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9872923f398525a0ceafba
+  app: mongodb
 - name: Mosaic Voyager Core Banking Solution
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/65606a3135b7f887fbd263a1
@@ -1950,6 +1975,7 @@ charts:
 - name: NetApp Trident
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/67c7360272f58e58542115a9
+  app: netapp
 - name: Netguard Identity Access ManagerSecure
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/63978046df495c6fc9a6ad20
@@ -2016,9 +2042,11 @@ charts:
 - name: NGINX Gateway Fabric Operator
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/68d546705a53e1d538739b65
+  app: nginx
 - name: NGINX Ingress Operator
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9874913f398525a0ceb00d
+  app: ingress-nginx
 - name: Nirmata Enterprise for KyvernoKyverno Operator manages the lifecycle of Kyverno
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/63c6d47f2b437fd753cdfca2
@@ -2091,9 +2119,11 @@ charts:
 - name: NVIDIA GPU Operator
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5faa9cb6b72282d84b742c6e
+  app: nvidia
 - name: NVIDIA Network Operator
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6140a6397cdbea410e68b99c
+  app: nvidia-network-operator
 - name: N|Solid Console
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98736c3f398525a0ceafd7
@@ -2187,6 +2217,7 @@ charts:
 - name: OpenEBS
   category: storage
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9872a62989e6a90307acdd
+  app: openebs
 - name: Openlegacy Hub (Lite Edition)
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/6400cadd1ff45dfc7a16504a
@@ -2311,18 +2342,23 @@ charts:
 - name: Percona Operator for MongoDB
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5f6cf94be34c57395cc83335
+  app: mongodb
 - name: Percona Operator for MySQL based on Percona Server for MySQL
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/68ee83498ad52ce6467a35d2
+  app: mysql
 - name: Percona Operator for MySQL based on Percona XtraDB Cluster
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/612f43a0c3f77db73efe7420
+  app: mysql
 - name: Percona Operator for PostgreSQL
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5f6cf3ff8badb0cacbb48cd5
+  app: postgresql
 - name: Percona Server for MongoDB
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9872c8d4ae96b7493f08e2
+  app: mongodb
 - name: Percona XtraDB Cluster 8.0
   category: database
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9872c5c87154c17fb36540
@@ -2449,6 +2485,7 @@ charts:
 - name: Red Hat build of OpenTelemetry
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/615486a469cb9f1af5ba7421
+  app: opentelemetry
 - name: Red Hat build of Quarkus
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/619f8269172f7877a2a90171
@@ -2618,6 +2655,7 @@ charts:
 - name: Redis EnterpriseHA, Geo Distributed No-SQL Database ==================
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98728d3f398525a0ceafb9
+  app: redis
 - name: Redteamobile-eSIM
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/646ec615e321c7eaa53ac7ec
@@ -2702,6 +2740,7 @@ charts:
 - name: ScyllaDB Operator
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/676406168b9189c5ea8a846d
+  app: scylladb
 - name: Secrets Manager
   category: security
   url: https://catalog.redhat.com/en/software/container-stacks/detail/602e2801e625d389c2aa1f7f
@@ -2775,6 +2814,7 @@ charts:
 - name: Splunk Enterprise
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9874133f398525a0ceafed
+  app: splunk
 - name: Splunk Operator for
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98742240cdcbfaa75bf8b7
@@ -2835,6 +2875,7 @@ charts:
 - name: Streams for Apache KafkaBased on the Apache Kafka project
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5ef20efd46bc301a95a1e9a4
+  app: kafka
 - name: STSSilicom STS Tsync support operator to enable PTP node support
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/622b5609f8469c36ac475619
@@ -2871,6 +2912,7 @@ charts:
 - name: Tempo OperatorCreate and manage deployments of Tempo
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/64254fc5060863e2125a6186
+  app: tempo
 - name: Tetrate Service Bridge (TSB)
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/63224dc0bc45b8cf6605f7e8
@@ -2904,9 +2946,11 @@ charts:
 - name: Traefik
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e98745a6c5dcb34dfbb1a0a
+  app: traefik
 - name: Traefik Enterprise Edition
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/5e9874593f398525a0ceb001
+  app: traefik
 - name: Treasury Kondor
   category: ai-ml
   url: https://catalog.redhat.com/en/software/container-stacks/detail/67eeab6c4786d988b546ad74
@@ -3006,6 +3050,7 @@ charts:
 - name: VictoriaMetrics Operator
   category: infrastructure
   url: https://catalog.redhat.com/en/software/container-stacks/detail/68fb788b6d6f8c6757e97743
+  app: victoriametrics
 - name: Videris
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/643e8f6663b382a4cd3f9aae
@@ -3147,6 +3192,7 @@ charts:
 - name: Zookeeper Operator
   category: monitoring
   url: https://catalog.redhat.com/en/software/container-stacks/detail/62d580c39b47d7097f2280b2
+  app: zookeeper
 - name: ZTE Unified Computing Media Gateway(UCMG)
   category: networking
   url: https://catalog.redhat.com/en/software/container-stacks/detail/66b9f6a693a19bc56e368bc5
