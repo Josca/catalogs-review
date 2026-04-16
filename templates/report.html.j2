@@ -632,8 +632,15 @@
         });
     });
 
-    // Apply sort from URL on page load
+    // Apply sort from URL on page load, or default to providers desc
     if (loadSortFromURL()) {
+        updateIndicators();
+        sortTable();
+    } else {
+        sortKeys = [
+            {col: colByName['providers'], dir: -1, type: 'number'},
+            {col: colByName['stars'], dir: -1, type: 'number'}
+        ];
         updateIndicators();
         sortTable();
     }
